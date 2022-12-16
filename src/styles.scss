@@ -1,1 +1,34 @@
-/* You can add global styles to this file, and also import other style files */
+*{
+    padding: 0;
+    margin: 0;
+}
+
+*:focus {
+    outline: none;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    background-color: rgb(236, 236, 236);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    
+    @media(max-width: 500px) {
+        font-size: 50%;
+      }
+}
+
+body{
+    margin: 0 auto;
+    position: relative;
+    font-size: 2rem;
+    max-width: 1450px;
+    overflow: hidden; 
+}
