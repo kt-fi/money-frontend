@@ -1,0 +1,21 @@
+<div class="container-fluid newAccount">
+    <div class="row">
+        <div class="col-12"> 
+            <h1 class="newAccount__header">Create A new Account</h1>
+            <div class="newAccount__userData">
+                <p class="">
+                    {{userName}}
+                </p>
+            </div>
+            
+                <form action=""  class="newAccount__form"  [formGroup]="form" (ngSubmit)="createAccount(form)">
+                    <label for="accountName">Account Name</label>
+                    <input type="text" id="accountName" class="form-control" formControlName="accountName">
+                    <div class="newAccount__buttons">
+                        <button class="btn btn-primary" type="submit">Create Account</button>
+                    </div>
+                    
+                </form>
+        </div>
+    </div>
+</div>

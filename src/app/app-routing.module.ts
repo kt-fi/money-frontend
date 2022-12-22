@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
+import { CreateSharedAccountComponent } from './create-shared-account/create-shared-account.component';
 
 const routes: Routes = [
-  { path: '', component: SignInComponent },
+  { path: '', component: CreateSharedAccountComponent },
   { path: '**', component: SignInComponent },
   { path: 'auth', component: SignInComponent },
   

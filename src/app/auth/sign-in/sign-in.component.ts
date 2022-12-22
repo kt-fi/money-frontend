@@ -13,7 +13,7 @@ export class SignInComponent implements OnInit {
 
   signup: boolean = true;
 
-  form: any;
+  form?: any;
   error: boolean = false;
   errorMsg?: any;
 
@@ -77,6 +77,10 @@ export class SignInComponent implements OnInit {
         this.errorMsg = err.message;
       })
     }
+  }
+
+  switchFormType(){
+    this.signup = !this.signup
   }
 
 }

@@ -31,6 +31,9 @@
                 <br>
                 <small class="signup__form-errors" *ngIf="form.touched && form.status !== 'VALID' &&  submitted == true">There is an error in your login</small>
             </form>
+            <div class="signup__formswitch">
+                <button class="btn btn-primary" (click)="switchFormType()">Switch to {{signup ? 'Sign In' : ' Sign Up'}}</button>
+            </div>
         </div>
     </div>
 </div>

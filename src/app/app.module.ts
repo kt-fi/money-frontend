@@ -7,12 +7,14 @@ import { LoadingPageComponent } from './loading-page/loading-page.component';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { CreateSharedAccountComponent } from './create-shared-account/create-shared-account.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoadingPageComponent,
-    SignInComponent
+    SignInComponent,
+    CreateSharedAccountComponent
   ],
   imports: [
     BrowserModule,
