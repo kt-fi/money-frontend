@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SharedAccountService } from '../shared-account.service';
 
 @Component({
   selector: 'app-create-shared-account',
@@ -12,7 +13,7 @@ export class CreateSharedAccountComponent implements OnInit {
 
   form: any;
 
-  constructor() { }
+  constructor(private sharedAccountService: SharedAccountService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -21,7 +22,11 @@ export class CreateSharedAccountComponent implements OnInit {
   }
 
   createAccount(form: FormGroup){
-    console.log(form.value)
+     let accountName = form.value.accountName;
+     let creatorId = '27dac04f5d5';
+      this.sharedAccountService.createNewSharedAccount(accountName, creatorId).subscribe(data => {
+        console.log(data)
+      })
   }
 
 }

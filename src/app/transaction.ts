@@ -1,5 +1,5 @@
 export class Transaction {
-    constructor(private transactionId: string, private sharedAccountNumber: string, private userId: string, private quantity: number, private paymentType: string, private concept: string, private date: string){
+    constructor(public transactionId: string, public sharedAccountNumber: string, public userId: string, public quantity: number, public paymentType: string, public concept: string, public date: string){
         this.transactionId = transactionId,
         this.sharedAccountNumber = sharedAccountNumber,
         this.userId = userId,

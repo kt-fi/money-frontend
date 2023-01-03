@@ -1,0 +1,27 @@
+<div class="container-fluid newTransaction">
+    <div class="row">
+        <div class="col-12">
+            <h2>You Have Paid: {{totalSpent}}</h2>
+            <h1>You Owe / Are Owed: {{balance}}</h1>
+            <form [formGroup]="form" class="newTransaction__form" action="" (ngSubmit)="onSubmitTransaction(form)">
+                <div class="form-group">
+                    <label for="quantity">Quantity:</label>
+                    <input formControlName="quantity" type="number" class="form-control">
+                    <label for="paymentType">Payment Type:</label>
+                    <input formControlName="paymentType" type="text"  class="form-control">
+                    <label for="concept">Concept:</label>
+                    <input formControlName="concept" type="text" class="form-control">
+                </div>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+        <div class="col-12">
+        <ul *ngIf="transactions">
+            <li *ngFor="let transaction of transactions">
+                <app-transaction-card-sm [transaction]="transaction"></app-transaction-card-sm>
+            </li>
+        </ul>
+            
+        </div>
+    </div>
+</div>
