@@ -15,6 +15,11 @@ export class TransactionsService {
     return this.http.post<Transaction>('http://localhost:3000/transactions/newTransaction', transaction)
   }
 
-
+onDeleteTransaction(transactionId:string, userId:string, accountId:string){
+  return this.http.delete<Transaction>(`http://localhost:3000/transactions/deleteTransactionById/${transactionId}/${userId}/${accountId}/`).subscribe((data)=>{
+    console.log(data)
+  })
+}
+  
 
 }

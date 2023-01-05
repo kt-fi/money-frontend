@@ -1,0 +1,83 @@
+.newTransaction {
+
+    font-size: 1.7rem;
+  
+&__review {
+    border: 1px solid rgb(179, 179, 179);
+    border-radius: 20px;
+    box-shadow: 1px 1px 1px rgb(112, 112, 112);
+    padding: 2rem;
+    margin: 1rem 0;
+}
+
+    &__title {
+        text-align: center;
+
+        &--balance {
+            border-radius: 20px;
+            box-shadow: 1px 1px 1px rgb(112, 112, 112);
+            background-color: rgb(184, 184, 255);
+            padding: 2rem;
+            margin: 1rem 0;
+           
+            &-text {
+                font-size: 3rem;
+            }
+        }
+    }
+
+    &__header {
+        width: 100%;
+        margin: 2rem 0;
+        text-align: center;
+    }
+
+    &__form {
+        background-color: rgb(216, 216, 255);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+    }
+
+    &__input {
+        width: 300px;
+        max-width: 100%;
+        font-size: 1.7rem;
+        padding: 1rem;
+    }
+
+    &__button {
+        border: 1px solid black;
+        margin: 1.5rem 0 1rem 0;
+        padding: 1rem;
+    }
+
+    &__usersList{
+        
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        background-color: rgb(158, 158, 252);
+
+        &--item {
+            width: 100%;
+            border: 1px solid white;
+            text-align: center;
+        }
+    }
+
+
+
+   
+}
+
+ul {
+    list-style-type: none;
+    padding:0;}
+
+
+.errorMsg {
+    color: red;
+}

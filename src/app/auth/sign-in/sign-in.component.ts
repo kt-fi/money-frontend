@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/user';
 import { AuthService } from '../auth.service';
 
@@ -19,7 +20,9 @@ export class SignInComponent implements OnInit {
 
   submitted: boolean = false;
 
-  constructor(public authService: AuthService) { }
+  user?: User;
+
+  constructor(public authService: AuthService, private route: Router) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -46,7 +49,7 @@ export class SignInComponent implements OnInit {
         this.errorMsg = "Passwords Do Not Match";
         return;
       }else{
-        user = new User( undefined, userName, userEmail, password );
+        user = new User( undefined, userName, userEmail, password, [] );
         this.authService.signUp(user).subscribe((data:User | string)=>{
           let result = typeof(data)
           if(result == 'string'){
@@ -62,14 +65,14 @@ export class SignInComponent implements OnInit {
         });
       }
     }else{
-      user = new User( undefined, userName,userEmail, password );
-      this.authService.signIn(user).subscribe((data:User | string)=>{
+      user = new User( undefined, userName,userEmail, password, [] );
+      this.authService.signIn(user).subscribe((data:User)=>{
         let result = typeof(data)
         if(result == 'string'){
           this.error = true;
           this.errorMsg = data;
         }else{
-          console.log(data)
+          this.goToAccount(data)
         }
 },
       (err: HttpErrorResponse)=>{
@@ -81,6 +84,13 @@ export class SignInComponent implements OnInit {
 
   switchFormType(){
     this.signup = !this.signup
+  }
+
+
+  goToAccount(user: User){
+    this.user = user;
+    let accountId = user.userAccounts[0].accountId
+    this.route.navigate([`sharedAccount/${user.userId}/${accountId}`])
   }
 
 }

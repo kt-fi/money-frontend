@@ -1,5 +1,5 @@
 export class User {
-    constructor(private userId: string | undefined, private userName: string, private userEmail: string, private password: string, private userAccounts?: string[] ){
+    constructor(public userId: string | undefined, public userName: string, public userEmail: string, public password: string, public userAccounts: any[] ){
         this.userId = userId,
         this.userName = userName,
         this.userEmail = userEmail,

@@ -11,6 +11,9 @@ import { CreateSharedAccountComponent } from './create-shared-account/create-sha
 import { CreateNewTransactionComponent } from './transactions/create-new-transaction/create-new-transaction.component';
 import { HeaderComponent } from './header/header.component';
 import { TransactionCardSmComponent } from './transactions/transaction-card-sm/transaction-card-sm.component';
+import { RemoveNegativePipe } from './remove-negative.pipe';
+
+
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { TransactionCardSmComponent } from './transactions/transaction-card-sm/t
     CreateSharedAccountComponent,
     CreateNewTransactionComponent,
     HeaderComponent,
-    TransactionCardSmComponent
+    TransactionCardSmComponent,
+    RemoveNegativePipe,
+
   ],
   imports: [
     BrowserModule,

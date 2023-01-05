@@ -3,6 +3,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import { Observable, Subject } from 'rxjs';
 import { SharedAccount } from './shared-account';
 import { Transaction } from './transaction';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class SharedAccountService {
 
   getUserBalance(userId: string, accountId: string){
     return this.http.get(`http://localhost:3000/sharedAccount/getUserBalance/${userId}/${accountId}`).subscribe((data:any) =>{
-      this.userBalance.next(data.userBalance)
+      this.userBalance.next(data)
     })
   }
 
@@ -28,6 +29,10 @@ export class SharedAccountService {
      this.http.get<Transaction[]>(`http://localhost:3000/sharedAccount/getUserTransactions/${userId}/${accountId}`).subscribe((data:any)=> {
         this.userTransactions.next(data.transactions);
     })
+  }
+
+  getAccountUsers(accountId:string):Observable<string[]>{
+    return this.http.get<string[]>(`http://localhost:3000/sharedAccount/getAccountUsers/${accountId}`)
   }
 
 }

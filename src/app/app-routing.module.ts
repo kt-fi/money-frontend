@@ -5,10 +5,12 @@ import { CreateSharedAccountComponent } from './create-shared-account/create-sha
 import { CreateNewTransactionComponent } from './transactions/create-new-transaction/create-new-transaction.component';
 
 const routes: Routes = [
-  { path: '', component: CreateNewTransactionComponent },
-  { path: '**', component: SignInComponent },
+
   { path: 'auth', component: SignInComponent },
-  
+  { path: 'newSharedAccount', component: CreateSharedAccountComponent },
+  { path: 'sharedAccount/:userId/:accountId', component: CreateNewTransactionComponent },
+  { path: '', component: SignInComponent },
+  { path: '**', component: SignInComponent },
 ];
 
 @NgModule({

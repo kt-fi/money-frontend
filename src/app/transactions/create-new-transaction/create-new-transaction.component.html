@@ -1,24 +1,49 @@
 <div class="container-fluid newTransaction">
     <div class="row">
         <div class="col-12">
-            <h2>You Have Paid: {{totalSpent}}</h2>
-            <h1>You Owe / Are Owed: {{balance}}</h1>
+            <div class="newTransaction__review">
+                <h2 class="newTransaction__title">Cuenta Total: {{totalAccountBalance | currency: 'EUR': true}}</h2>
+                <h2 class="newTransaction__title">Tu Total Pagado: {{totalSpent | currency: 'EUR': true}}</h2>
+            </div>
+            
+           <div class="newTransaction__title newTransaction__title--balance">
+            <h1 *ngIf="balance > 0">  Tu Debes: </h1><h1 *ngIf="balance <= 0">Te lo Deben:</h1> <h1  class="newTransaction__title--balance-text"> {{balance |  removeNegative | currency: 'EUR': true }}</h1>
+           </div>
+           <div class="newTransaction__form">
+            <h2 class="newTransaction__header">Añandir Nuevo Pago:</h2>
             <form [formGroup]="form" class="newTransaction__form" action="" (ngSubmit)="onSubmitTransaction(form)">
                 <div class="form-group">
-                    <label for="quantity">Quantity:</label>
-                    <input formControlName="quantity" type="number" class="form-control">
-                    <label for="paymentType">Payment Type:</label>
-                    <input formControlName="paymentType" type="text"  class="form-control">
-                    <label for="concept">Concept:</label>
-                    <input formControlName="concept" type="text" class="form-control">
+                    <label for="quantity">Cantidad:</label>
+                    <input formControlName="quantity" type="number" class="form-control newTransaction__input">
+                    <small class="errorMsg" *ngIf="form.controls.quantity.touched && form.controls.quantity.status !== 'VALID'">Falta Cantidad</small>
                 </div>
-                <button type="submit">Save</button>
+                <div class="form-group">
+                    <label for="paymentType">Tipo De Pago:</label>
+                    <input formControlName="paymentType" type="text"  class="form-control newTransaction__input">
+                </div>
+                  <div class="form-group">
+                    <label for="concept">Concepto:</label>
+                    <input formControlName="concept" type="text" class="form-control newTransaction__input">
+                    <small class="errorMsg" *ngIf="form.controls.concept.touched && form.controls.concept.status !== 'VALID'">Falta Concepto</small>
+                  </div>
+                   
+              
+                <div class="newTransaction__buttons">
+                    <button type="submit" class=" newTransaction__button" [disabled]="form.status !== 'VALID'">Guardar</button>
+                </div>
             </form>
+           </div>
+           
         </div>
         <div class="col-12">
-        <ul *ngIf="transactions">
-            <li *ngFor="let transaction of transactions">
-                <app-transaction-card-sm [transaction]="transaction"></app-transaction-card-sm>
+            <ul class=" newTransaction__usersList" *ngIf="accountUsers">
+                <li class=" newTransaction__usersList--item" *ngFor="let user of accountUsers" >
+                   <p (click)="onChangeAccount(user.userId)"> {{user.userName}}</p>
+                </li>
+            </ul>
+        <ul class="newTransaction__list" *ngIf="transactions">
+            <li class="newTransaction__list--item"  *ngFor="let transaction of transactions">
+                <app-transaction-card-sm [userId]="userId" [transaction]="transaction" (event)="getUserBalance($event)"></app-transaction-card-sm>
             </li>
         </ul>
             

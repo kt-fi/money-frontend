@@ -1,0 +1,47 @@
+.card {
+    height: min-content;
+    padding: 1rem 1rem;
+    border: 0;
+    border-bottom: 1px  solid rgb(114, 114, 114);
+    &__header{
+        height: 50px;
+    }   
+
+    &__concept {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    &__quantity {
+        font-size: 3rem;
+        font-weight: 600;
+        text-align: right;
+    }
+
+    &__date {
+
+    }
+
+    &__footer {
+        height: min-content;
+        width: 100%;
+    }
+
+    &--delete {
+        width: 100%;
+        color: red;
+        text-align: right;
+    }
+
+    
+    }
+   
+
+
+
+
+// &--delete {
+//                 color: red;
+//                 float: right;
+//             }
+       
