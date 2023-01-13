@@ -1,8 +1,8 @@
 .signup {
     position: relative;
-    background-color: var(--color-background-blue);
+    background-color: white;
     height: 100vh;
-    color: white;
+    color: black;
 
     &__header {
         position: absolute;
@@ -45,6 +45,14 @@
 .btn {
     font-size: 1.8rem;
     font-weight: 700;
+    
     width: 45%;
     padding: 1.25rem;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
 }

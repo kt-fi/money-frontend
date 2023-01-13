@@ -21,7 +21,7 @@
                 <div class="form-group" *ngIf="signup">
                     <label for="repeatPassword" class="">Repeat Password</label>
                     <input formControlName="repeatPassword" id="repeatPassword" type="password" class="form-control">
-                    <small class="signup__form-errors" *ngIf="error">{{errorMsg}}</small>
+                    
                 </div>
                 <div class="signup__form-buttons">
                     <input type="submit" class="btn btn-primary" [disabled]="form.status !== 'VALID'">
@@ -29,8 +29,10 @@
                 </div>
                 
                 <br>
+                <small class="signup__form-errors" *ngIf="error">{{errorMsg}}</small>
                 <small class="signup__form-errors" *ngIf="form.touched && form.status !== 'VALID' &&  submitted == true">There is an error in your login</small>
             </form>
+            
             <div class="signup__formswitch">
                 <button class="btn btn-primary" (click)="switchFormType()">Switch to {{signup ? 'Sign In' : ' Sign Up'}}</button>
             </div>

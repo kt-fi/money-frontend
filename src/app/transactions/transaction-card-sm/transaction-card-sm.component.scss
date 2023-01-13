@@ -1,15 +1,17 @@
 .card {
     height: min-content;
     padding: 1rem 1rem;
+    border-radius: 1px;
     border: 0;
-    border-bottom: 1px  solid rgb(114, 114, 114);
+    box-shadow: 0 0 3px rgb(184, 184, 184);
+    font-family: var(--font-main);
     &__header{
         height: 50px;
     }   
 
     &__concept {
-        font-size: 2rem;
-        font-weight: 700;
+        font-size: 2.5rem;
+        font-weight: 500;
     }
 
     &__quantity {
@@ -29,6 +31,7 @@
 
     &--delete {
         width: 100%;
+        font-weight: 600;
         color: red;
         text-align: right;
     }

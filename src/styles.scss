@@ -1,5 +1,7 @@
 :root {
     --color-background-blue: #4B56D2;
+
+    --font-main: 'Montserrat', sans-serif;
 }
 
 *{
@@ -23,6 +25,7 @@ html {
     background-color: rgb(236, 236, 236);
     overflow-x: hidden;
     scroll-behavior: smooth;
+
     
     @media(max-width: 500px) {
         font-size: 50%;
@@ -35,7 +38,40 @@ body{
     font-size: 2rem;
     max-width: 1450px;
     overflow: hidden; 
+
 }
 
 
 // GLOBAL COMPONENTS
+
+
+.g-form {
+    position: absolute;
+}
+
+label {
+    background-color: white;
+    font-size: 1.45rem;
+    padding: 0 1rem;
+    color: rgb(129, 129, 129);
+    position:relative;
+    top: 8px;
+    left: 10px;
+}
+
+.input:focus + label {
+    color: white;
+    animation: labelAnim  1s ;
+}
+
+
+@keyframes labelAnim {
+    0%{
+        top: 20px;
+        left: 27px;
+    }
+    100%{
+        top: 0px;
+        left: 0px;
+    }
+}

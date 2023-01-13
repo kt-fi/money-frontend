@@ -14,12 +14,12 @@ export class AuthService {
   constructor(public http: HttpClient) { }
 
   signIn(user: User):Observable<User>{
-  let data = this.http.post<User>(`http://localhost:3000/user/login`, user)
+  let data = this.http.post<User>(`${this.url}/user/login`, user)
   return data;
   }
 
   signUp(user:User){
-    let data =  this.http.post<any>(`http://localhost:3000/user/newUser`, user)
+    let data =  this.http.post<any>(`${this.url}/user/newUser`, user)
     return data;
   }
 }

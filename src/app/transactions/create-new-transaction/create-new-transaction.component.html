@@ -7,9 +7,9 @@
             </div>
             
            <div class="newTransaction__title newTransaction__title--balance">
-            <h1 *ngIf="balance > 0">  Tu Debes: </h1><h1 *ngIf="balance <= 0">Te lo Deben:</h1> <h1  class="newTransaction__title--balance-text"> {{balance |  removeNegative | currency: 'EUR': true }}</h1>
+            <h1 *ngIf="balance > 0">  Tu Debes: </h1><h1 *ngIf="balance <= 0">Te lo Deben:</h1> <h1  [ngClass]="{'newTransaction__title--balance-text':balance <= 0, 'newTransaction__title--balance-text-neg':balance >= 0}"> {{balance |  removeNegative | currency: 'EUR': true }}</h1>
            </div>
-           <div class="newTransaction__form">
+           <div class="newTransaction__form newTransaction__form--container">
             <h2 class="newTransaction__header">Añandir Nuevo Pago:</h2>
             <form [formGroup]="form" class="newTransaction__form" action="" (ngSubmit)="onSubmitTransaction(form)">
                 <div class="form-group">
@@ -29,7 +29,7 @@
                    
               
                 <div class="newTransaction__buttons">
-                    <button type="submit" class=" newTransaction__button" [disabled]="form.status !== 'VALID'">Guardar</button>
+                    <button type="submit" class="newTransaction__button" [disabled]="form.status !== 'VALID'">Guardar</button>
                 </div>
             </form>
            </div>
@@ -37,8 +37,8 @@
         </div>
         <div class="col-12">
             <ul class=" newTransaction__usersList" *ngIf="accountUsers">
-                <li class=" newTransaction__usersList--item" *ngFor="let user of accountUsers" >
-                   <p (click)="onChangeAccount(user.userId)"> {{user.userName}}</p>
+                <li *ngFor="let user of accountUsers" >
+                   <p class=" newTransaction__usersList--item"  (click)="onChangeAccount(user.userId)"> {{user.userName}}</p>
                 </li>
             </ul>
         <ul class="newTransaction__list" *ngIf="transactions">
