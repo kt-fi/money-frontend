@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SharedAccountService } from 'src/app/shared-account.service';
 import { Transaction } from 'src/app/transaction';
@@ -13,6 +12,8 @@ import { TransactionsService } from '../transactions.service';
 })
 export class CreateNewTransactionComponent implements OnInit {
 
+  loader?: any;
+
   userId: string = '';
   accountId:string ='';
 
@@ -25,6 +26,7 @@ export class CreateNewTransactionComponent implements OnInit {
 
   ngOnInit(): void {
 
+    
     this.userId = this.currentRoute.snapshot.params['userId']
     this.accountId = this.currentRoute.snapshot.params['accountId']
 

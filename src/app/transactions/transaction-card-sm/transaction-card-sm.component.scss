@@ -3,8 +3,10 @@
     padding: 1rem 1rem;
     border-radius: 1px;
     border: 0;
-    box-shadow: 0 0 3px rgb(184, 184, 184);
+    box-shadow: 0 0 5px rgb(184, 184, 184);
     font-family: var(--font-main);
+    margin: 0.5rem 0;
+    
     &__header{
         height: 50px;
     }   

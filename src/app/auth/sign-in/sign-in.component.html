@@ -1,7 +1,7 @@
 <div class="container-fluid signup">
     <div class="row">
         <div class="col-12">
-            <h1 class="signup__header">LOGO</h1>
+            <h1 class="signup__header">Money Control App</h1>
             <form class="signup__form" action="" [formGroup]="form" (ngSubmit)="submitForm(form)">
                 <div class="form-group" *ngIf="signup">
                     <label for="userName" class="">User Name</label>
@@ -26,16 +26,18 @@
                 <div class="signup__form-buttons">
                     <input type="submit" class="btn btn-primary" [disabled]="form.status !== 'VALID'">
                     <input type="reset" class="btn btn-warning">
+                    
                 </div>
-                
+                <div class="signup__formswitch">
+                        <p class="" (click)="switchFormType()">Switch to {{signup ? 'Sign In' : ' Sign Up'}}</p>
+                    </div>
                 <br>
                 <small class="signup__form-errors" *ngIf="error">{{errorMsg}}</small>
                 <small class="signup__form-errors" *ngIf="form.touched && form.status !== 'VALID' &&  submitted == true">There is an error in your login</small>
+                  
             </form>
             
-            <div class="signup__formswitch">
-                <button class="btn btn-primary" (click)="switchFormType()">Switch to {{signup ? 'Sign In' : ' Sign Up'}}</button>
-            </div>
+          
         </div>
     </div>
 </div>

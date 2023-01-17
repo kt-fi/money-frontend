@@ -19,18 +19,19 @@ export class AccountReviewComponent implements OnInit {
 
   userId: string = '';
   accountId:string ='';
-  
 
   totalSpent: number = 0;
   balance: number = 0;
   totalAccountBalance: number = 0;
 
+  loader: boolean = false;
 
   constructor( private sharedAccountService: SharedAccountService, private currentRoute: ActivatedRoute) { }
 
   
   ngOnInit(): void {
 
+    
     this.userId = this.currentRoute.snapshot.params['userId']
     this.accountId = this.currentRoute.snapshot.params['accountId']
 

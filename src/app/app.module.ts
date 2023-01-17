@@ -14,6 +14,7 @@ import { TransactionCardSmComponent } from './transactions/transaction-card-sm/t
 import { RemoveNegativePipe } from './remove-negative.pipe';
 import { NewTransactionComponent } from './transactions/new-transaction/new-transaction.component';
 import { AccountReviewComponent } from './transactions/account-review/account-review.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 
@@ -29,6 +30,7 @@ import { AccountReviewComponent } from './transactions/account-review/account-re
     RemoveNegativePipe,
     NewTransactionComponent,
     AccountReviewComponent,
+    LoaderComponent,
 
   ],
   imports: [

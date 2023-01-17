@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { SharedAccount } from './shared-account';
 import { Transaction } from './transaction';
-import { User } from './user';
 import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedAccountService {
+
+  loader$ = new BehaviorSubject(false)
 
   userBalance = new Subject();
   userTransactions = new Subject<Transaction[]>();
@@ -23,6 +24,7 @@ export class SharedAccountService {
   }
 
   getUserBalance(userId: string, accountId: string){
+    this.loader$.next(true)
     return this.http.get(`${this.url}/sharedAccount/getUserBalance/${userId}/${accountId}`).subscribe((data:any) =>{
       this.userBalance.next(data)
     })
