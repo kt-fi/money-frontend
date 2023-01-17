@@ -1,0 +1,25 @@
+
+   <div class="newTransaction__form newTransaction__form--container">
+    <h2 class="newTransaction__header">Añandir Nuevo Pago:</h2>
+    <form [formGroup]="form" class="newTransaction__form" action="" (ngSubmit)="onSubmitTransaction(form)">
+        <div class="form-group">
+            <label for="quantity">Cantidad:</label>
+            <input formControlName="quantity" type="number" class="form-control newTransaction__input">
+            <small class="errorMsg" *ngIf="form.controls.quantity.touched && form.controls.quantity.status !== 'VALID'">Falta Cantidad</small>
+        </div>
+        <div *ngIf="!hideInput" class="form-group">
+            <label for="paymentType">Tipo De Pago:</label>
+            <input formControlName="paymentType" type="text"  class="form-control newTransaction__input">
+        </div>
+          <div class="form-group">
+            <label for="concept">Concepto:</label>
+            <input formControlName="concept" type="text" class="form-control newTransaction__input">
+            <small class="errorMsg" *ngIf="form.controls.concept.touched && form.controls.concept.status !== 'VALID'">Falta Concepto</small>
+          </div>
+           
+      
+        <div class="newTransaction__buttons">
+            <button type="submit" class="newTransaction__button" [disabled]="form.status !== 'VALID'">Guardar</button>
+        </div>
+    </form>
+   </div>

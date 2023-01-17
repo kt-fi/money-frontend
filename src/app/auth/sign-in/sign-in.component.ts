@@ -12,7 +12,7 @@ import { AuthService } from '../auth.service';
 })
 export class SignInComponent implements OnInit {
 
-  signup: boolean = true;
+  signup: boolean = false;
 
   form?: any;
   error: boolean = false;
@@ -26,9 +26,9 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      userName: new FormControl('',[ Validators.required, Validators.minLength(3)]),
+      userName: new FormControl('User',[ Validators.required, Validators.minLength(3)]),
       email: new FormControl('',[ Validators.required, Validators.email]),
-      password: new FormControl('', [ Validators.required, Validators.minLength(5)]),
+      password: new FormControl('12345', [ Validators.required, Validators.minLength(5)]),
       repeatPassword: new FormControl('')
     })
   }

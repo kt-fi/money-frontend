@@ -3,7 +3,7 @@
         <div class="col-12">
             <h1 class="signup__header">LOGO</h1>
             <form class="signup__form" action="" [formGroup]="form" (ngSubmit)="submitForm(form)">
-                <div class="form-group">
+                <div class="form-group" *ngIf="signup">
                     <label for="userName" class="">User Name</label>
                     <input formControlName="userName" id="userName" type="text" class="form-control">
                     <small class="signup__form-errors"  *ngIf="form.controls.userName.touched && form.controls.userName.status == 'INVALID'">Username must be at least 3 characters</small>

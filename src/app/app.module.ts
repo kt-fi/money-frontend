@@ -12,6 +12,8 @@ import { CreateNewTransactionComponent } from './transactions/create-new-transac
 import { HeaderComponent } from './header/header.component';
 import { TransactionCardSmComponent } from './transactions/transaction-card-sm/transaction-card-sm.component';
 import { RemoveNegativePipe } from './remove-negative.pipe';
+import { NewTransactionComponent } from './transactions/new-transaction/new-transaction.component';
+import { AccountReviewComponent } from './transactions/account-review/account-review.component';
 
 
 
@@ -25,6 +27,8 @@ import { RemoveNegativePipe } from './remove-negative.pipe';
     HeaderComponent,
     TransactionCardSmComponent,
     RemoveNegativePipe,
+    NewTransactionComponent,
+    AccountReviewComponent,
 
   ],
   imports: [

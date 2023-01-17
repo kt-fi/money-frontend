@@ -1,0 +1,7 @@
+<div class="newTransaction__review">
+    <h2 class="newTransaction__title">Cuenta Total: {{totalAccountBalance | currency: 'EUR': true}}</h2>
+    <h2 class="newTransaction__title">Tu Total Pagado: {{totalSpent | currency: 'EUR': true}}</h2>
+</div>
+<div class="newTransaction__title newTransaction__title--balance">
+    <h1 *ngIf="balance > 0">  Tu Debes: </h1><h1 *ngIf="balance <= 0">Te lo Deben:</h1> <h1  [ngClass]="{'newTransaction__title--balance-text':balance <= 0, 'newTransaction__title--balance-text-neg':balance >= 0}"> {{balance |  removeNegative | currency: 'EUR': true }}</h1>
+   </div>
