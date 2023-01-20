@@ -15,6 +15,8 @@ import { RemoveNegativePipe } from './remove-negative.pipe';
 import { NewTransactionComponent } from './transactions/new-transaction/new-transaction.component';
 import { AccountReviewComponent } from './transactions/account-review/account-review.component';
 import { LoaderComponent } from './loader/loader.component';
+import { MenuComponent } from './menu/menu/menu.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -31,6 +33,8 @@ import { LoaderComponent } from './loader/loader.component';
     NewTransactionComponent,
     AccountReviewComponent,
     LoaderComponent,
+    MenuComponent,
+
 
   ],
   imports: [
@@ -38,7 +42,8 @@ import { LoaderComponent } from './loader/loader.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

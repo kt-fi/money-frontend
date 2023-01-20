@@ -4,40 +4,19 @@
             {{transaction.concept}}
         </div>
         <div class="col-5 card__quantity">
-            {{transaction.quantity | currency: 'EUR': true}}
+            {{transaction.quantity |  currency: 'EUR' : 'symbol'}}
         </div>
     </div>
     <div class="row card__footer">
         <div class="card__date col-7">
             {{transaction.date}}
         </div>
-        <div class="card__delete col-5">
-            <p class=" card--delete" (click)="onDeleteTransaction(transaction)" *ngIf="userId === transaction.userId">BORRAR</p>
+        <div class="card__delete col-5" *ngIf="!loading">
+            <p class=" card--delete" (click)="onDeleteTransaction(transaction)" *ngIf="userId === transaction.userId"><i class="fa-solid fa-trash"></i></p>
+        </div>
+        <div class="card__delete col-5 loader-container" *ngIf="loading">
+            <span class="loader-small"></span>
         </div>
     </div>
 </div>
 
-<!-- <div class="container-fluid card" *ngIf="transaction">
-    <div class="row">
-        <div class="col-7">
-            <div class="card__header ">
-               <h4 class="card__header--text">
-                {{transaction.concept}}
-               </h4>
-            </div> 
-        </div>
-               <div class="card__main row">
-                <h6 class="card__main--text">
-                    {{transaction.quantity | currency: 'EUR': true}}
-                </h6>
-               </div>
-               <div class="card__footer row">
-                <small class="card__footer--text col-6">
-                    {{transaction.date}}
-                </small>
-                <p class=" card__footer--delete col-6" (click)="onDeleteTransaction(transaction)" *ngIf="userId === transaction.userId">BORRAR</p>
-               </div>
-            
-       
-    </div>
-</div> -->

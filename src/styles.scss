@@ -1,5 +1,7 @@
 :root {
     --color-background-blue: #4B56D2;
+    --color-menu-yellow: #FFE898;
+    --color-loading-blue: rgba(0, 2, 94, 0.671);
 
     --font-main: 'Montserrat', sans-serif;
 }
@@ -74,4 +76,70 @@ label {
         top: 0px;
         left: 0px;
     }
+}
+
+
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 3px solid #FFF;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    z-index: 20001;
+  } 
+  .loader::after {
+    content: '';  
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-bottom-color: #FF3D00;
+  }
+  
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  } 
+
+  .loader-small {
+    width: 13px;
+    height: 13px;
+    border: 3px solid #FFF;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    z-index: 20001;
+  } 
+  .loader-small::after {
+    content: '';  
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-bottom-color: #FF3D00;
+  }
+  
+
+  .errorMsg {
+    color: red;
 }

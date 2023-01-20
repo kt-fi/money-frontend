@@ -1,5 +1,11 @@
-
-   <div class="newTransaction__form newTransaction__form--container">
+<div class="background" *ngIf="!loading"></div>
+<div class="loader-container" *ngIf="loading">
+    <span class="loader"></span>
+</div>
+<div class="newTransaction">
+  
+  <div class="newTransaction__form newTransaction__form--container"  *ngIf="!loading" > 
+       <div class="newTransaction__close" (click)="closeModal()">X</div>
     <h2 class="newTransaction__header">Añandir Nuevo Pago:</h2>
     <form [formGroup]="form" class="newTransaction__form" action="" (ngSubmit)="onSubmitTransaction(form)">
         <div class="form-group">
@@ -23,3 +29,7 @@
         </div>
     </form>
    </div>
+</div>    
+   
+
+ 

@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MenuService } from 'src/app/menu.service';
+import { ModalService } from 'src/app/modal.service';
 import { SharedAccountService } from 'src/app/shared-account.service';
 import { Transaction } from 'src/app/transaction';
 import { User } from 'src/app/user';
@@ -14,6 +16,7 @@ export class CreateNewTransactionComponent implements OnInit {
 
   loader?: any;
 
+
   userId: string = '';
   accountId:string ='';
 
@@ -21,7 +24,7 @@ export class CreateNewTransactionComponent implements OnInit {
 
   transactions?: Transaction[];
 
-  constructor(private transactionsService: TransactionsService, private sharedAccountService: SharedAccountService, private currentRoute: ActivatedRoute) { }
+  constructor(private toggleMenu: MenuService, private transactionsService: TransactionsService, private sharedAccountService: SharedAccountService, private currentRoute: ActivatedRoute, private modalService: ModalService, private elementRef: ElementRef) { }
 
 
   ngOnInit(): void {
@@ -51,5 +54,16 @@ export class CreateNewTransactionComponent implements OnInit {
 onChangeAccount(userId: any){
   this.sharedAccountService.getUserTransactions(userId, this.accountId)
 }
+
+
+// TO BE REFACTORED INTO COMPONENTS
+
+addTransaction(userId:string, accountId:string){
+  let event = this.modalService.toggleModal('OpenModal', { event: 'form', 'isOpen': true, data: {'userId': userId, 'accountId': accountId}})
+  this.elementRef.nativeElement.dispatchEvent(event)
+}
+
+
+
 
 }

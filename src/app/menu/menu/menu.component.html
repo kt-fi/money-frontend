@@ -1,0 +1,13 @@
+<div [ngClass]="{'menu': menuIsOpen}">
+<ul class="menu__container" [@openClose]="menuIsOpen ? 'open' : 'closed'">
+    <li class="menu__item" (click)="toggleMenu()">close</li>
+    <li class="menu__item menu__item-1" [@openClose1]="menuHasOpened ? 'open' : 'closed'">New Account</li>
+    <li class="menu__item menu__item-2" [@openClose2]="menuHasOpened ? 'open' : 'closed'">Monthly Review</li>
+    <li class="menu__item menu__item-3" [@openClose3]="menuHasOpened ? 'open' : 'closed'">Notifications</li>
+    <li class="menu__item menu__item-4" [@openClose4]="menuHasOpened ? 'open' : 'closed'">Personal Account</li>
+</ul>
+</div>
+<div class="menu__button">
+    <p class="menu__button--plus" (click)="toggleMenu()"><i class="fa-solid fa-bars"></i></p>
+</div>
+

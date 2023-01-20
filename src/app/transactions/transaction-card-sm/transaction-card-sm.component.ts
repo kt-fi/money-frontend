@@ -15,7 +15,7 @@ export class TransactionCardSmComponent implements OnInit {
 
   @Output()event = new EventEmitter();
 
-
+  loading:boolean = false;
 
 
   constructor(private transactionService: TransactionsService, private sharedAccountService: SharedAccountService) { }
@@ -25,6 +25,7 @@ export class TransactionCardSmComponent implements OnInit {
   }
 
   onDeleteTransaction(transaction: Transaction){
+    this.loading = true;
     this.transactionService.onDeleteTransaction(transaction.transactionId, transaction.userId, transaction.accountId);
     this.event.emit(transaction);
   }

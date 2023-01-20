@@ -6,6 +6,7 @@
     box-shadow: 0 0 5px rgb(184, 184, 184);
     font-family: var(--font-main);
     margin: 0.5rem 0;
+    z-index: 10;
     
     &__header{
         height: 50px;
@@ -39,6 +40,13 @@
     }
 
     
+    }
+
+    .loader-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+        align-items: right;
     }
    
 

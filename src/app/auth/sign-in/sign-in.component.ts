@@ -12,6 +12,8 @@ import { AuthService } from '../auth.service';
 })
 export class SignInComponent implements OnInit {
 
+  loading:boolean = false;
+
   signup: boolean = false;
 
   form?: any;
@@ -43,7 +45,7 @@ export class SignInComponent implements OnInit {
     this.submitted= true;
 
     if(this.signup){
-     
+      this.loading = true;
       if(password != form.value.repeatPassword){
         this.error = true;
         this.errorMsg = "Passwords Do Not Match";
@@ -55,6 +57,7 @@ export class SignInComponent implements OnInit {
           if(result == 'string'){
             this.error = true;
             this.errorMsg = data;
+            this.loading = false;
           }else{
             console.log(data)
           }
@@ -65,12 +68,14 @@ export class SignInComponent implements OnInit {
         });
       }
     }else{
+      this.loading = true;
       user = new User( undefined, userName,userEmail, password, [] );
       this.authService.signIn(user).subscribe((data:User)=>{
         let result = typeof(data)
         if(result == 'string'){
           this.error = true;
           this.errorMsg = data;
+          this.loading = false;
         }else{
           this.goToAccount(data)
         }

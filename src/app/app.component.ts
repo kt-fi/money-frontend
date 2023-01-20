@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, Output } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,29 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'moneycontrol';
+
+@Output()
+reviewModalIsOpen?:boolean ;
+data?:any;
+
+@Output()
+messageModalIsOpen?: boolean = false;
+messageData:any;
+
+
+  @HostListener('OpenModal', ['$event'])
+  onCustomEventCaptured(event: any) {
+    if(event.detail.event === 'form'){
+      console.log(event.detail)
+       this.reviewModalIsOpen = event.detail.isOpen;
+        this.data = {'userId': event.detail.data.userId, 'accountId': event.detail.data.accountId}
+    }else if(event.detail.event === 'message'){
+      this.messageData = event.detail.data;
+      this.messageModalIsOpen = !this.messageModalIsOpen;
+      setTimeout(()=>{
+        this.messageModalIsOpen = !this.messageModalIsOpen;
+      },4000)
+    }
+   
+}
 }

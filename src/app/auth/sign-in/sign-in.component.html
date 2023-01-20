@@ -1,6 +1,9 @@
 <div class="container-fluid signup">
     <div class="row">
-        <div class="col-12">
+        <div class="loader-container" *ngIf="loading">
+            <span class="loader"></span>
+        </div>
+        <div class="col-12" *ngIf="!loading">
             <h1 class="signup__header">Money Control App</h1>
             <form class="signup__form" action="" [formGroup]="form" (ngSubmit)="submitForm(form)">
                 <div class="form-group" *ngIf="signup">

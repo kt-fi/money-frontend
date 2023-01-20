@@ -1,9 +1,15 @@
 <app-loader *ngIf="loader"></app-loader>
+<app-menu></app-menu>
+<div class="addtransaction__button">
+    <p class="addtransaction__button--plus" (click)="addTransaction(userId, accountId)">+</p>
+</div>
+
+
 <div class="container-fluid newTransaction">
     <div class="row">
         <div class="col-12">
            <app-account-review></app-account-review>
-         <app-new-transaction></app-new-transaction>
+         <!-- <app-new-transaction></app-new-transaction> -->
         </div>
         <div class="col-12">
             <ul class=" newTransaction__usersList" *ngIf="accountUsers">
