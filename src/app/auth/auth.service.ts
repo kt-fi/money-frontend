@@ -18,8 +18,8 @@ export class AuthService {
   return data;
   }
 
-  signUp(user:User){
-    let data =  this.http.post<any>(`${this.url}/user/newUser`, user)
+  signUp(user:User):Observable<User>{
+    let data =  this.http.post<User>(`${this.url}/user/newUser`, user)
     return data;
   }
 }

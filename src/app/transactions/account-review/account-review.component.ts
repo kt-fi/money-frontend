@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { SharedAccountService } from 'src/app/shared-account.service';
 import { Transaction } from 'src/app/transaction';
 import { User } from 'src/app/user';
@@ -10,6 +11,9 @@ import { User } from 'src/app/user';
   styleUrls: ['./account-review.component.scss']
 })
 export class AccountReviewComponent implements OnInit {
+
+  subscription1$?: Subscription;
+
 
   @Input()
   event:any;
@@ -36,11 +40,16 @@ export class AccountReviewComponent implements OnInit {
     this.accountId = this.currentRoute.snapshot.params['accountId']
 
     this.sharedAccountService.getUserBalance(this.userId, this.accountId)
-    this.sharedAccountService.userBalance.subscribe((data:Transaction[] | any)=>{
+    this.subscription1$ = this.sharedAccountService.userBalance.subscribe((data:Transaction[] | any)=>{
       this.balance = data.userBalance;
       this.totalSpent = data.userTotalSpent;
       this.totalAccountBalance = data.totalAccountBalance;
     })
   }
+
+ngOnDestroy() {
+  this.subscription1$?.unsubscribe();
+}
+
 }
 

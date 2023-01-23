@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { User } from 'src/app/user';
 import { AuthService } from '../auth.service';
 
@@ -11,6 +12,9 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
+
+  subscription1$?: Subscription;
+  subscription2$?: Subscription;
 
   loading:boolean = false;
 
@@ -52,7 +56,7 @@ export class SignInComponent implements OnInit {
         return;
       }else{
         user = new User( undefined, userName, userEmail, password, [] );
-        this.authService.signUp(user).subscribe((data:User | string)=>{
+        this.subscription1$ = this.authService.signUp(user).subscribe((data:User)=>{
           let result = typeof(data)
           if(result == 'string'){
             this.error = true;
@@ -65,12 +69,13 @@ export class SignInComponent implements OnInit {
         (err: HttpErrorResponse)=>{
           this.error = true;
           this.errorMsg = err.message;
+          this.loading = false;
         });
       }
     }else{
       this.loading = true;
       user = new User( undefined, userName,userEmail, password, [] );
-      this.authService.signIn(user).subscribe((data:User)=>{
+      this.subscription2$ = this.authService.signIn(user).subscribe((data:User)=>{
         let result = typeof(data)
         if(result == 'string'){
           this.error = true;
@@ -83,6 +88,7 @@ export class SignInComponent implements OnInit {
       (err: HttpErrorResponse)=>{
         this.error = true;
         this.errorMsg = err.message;
+        this.loading = false;
       })
     }
   }
@@ -96,6 +102,11 @@ export class SignInComponent implements OnInit {
     this.user = user;
     let accountId = user.userAccounts[0].accountId
     this.route.navigate([`sharedAccount/${user.userId}/${accountId}`])
+  }
+
+  ngOnDestroy(){
+    this.subscription1$?.unsubscribe();
+    this.subscription2$?.unsubscribe();
   }
 
 }

@@ -7,7 +7,7 @@ import { Animations } from './Animations';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
   animations: [
-   Animations.animTrigger, Animations.menuItemOne, Animations.menuItemTwo, Animations.menuItemThree, Animations.menuItemFour
+   Animations.animTrigger, Animations.menuItemOne, Animations.menuItemTwo, Animations.menuItemThree, Animations.menuItemFour,
   ],
 })
 export class MenuComponent implements OnInit {

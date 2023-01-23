@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { MenuService } from 'src/app/menu.service';
 import { ModalService } from 'src/app/modal.service';
 import { SharedAccountService } from 'src/app/shared-account.service';
@@ -13,6 +14,10 @@ import { TransactionsService } from '../transactions.service';
   styleUrls: ['./create-new-transaction.component.scss']
 })
 export class CreateNewTransactionComponent implements OnInit {
+
+  //Subscriptions
+  subscription1$?: Subscription;
+  subscription2$?: Subscription;
 
   loader?: any;
 
@@ -34,13 +39,12 @@ export class CreateNewTransactionComponent implements OnInit {
     this.accountId = this.currentRoute.snapshot.params['accountId']
 
     this.sharedAccountService.getUserTransactions(this.userId, this.accountId);
-    this.sharedAccountService.userTransactions.subscribe((data:Transaction[] | any)=>{
+    this.subscription1$ = this.sharedAccountService.userTransactions.subscribe((data:Transaction[] | any)=>{
       this.transactions = data;
     })  
 
-    this.sharedAccountService.getAccountUsers(this.accountId).subscribe((users:any) => {
-      this.accountUsers = users.members
-      console.log(users.members)
+    this.subscription2$ = this.sharedAccountService.getAccountUsers(this.accountId).subscribe((users:User[]) => {
+      this.accountUsers = users;
     })
   }
 
@@ -64,6 +68,9 @@ addTransaction(userId:string, accountId:string){
 }
 
 
-
+ngOnDestroy() {
+  this.subscription1$?.unsubscribe();
+  this.subscription2$?.unsubscribe();
+}
 
 }

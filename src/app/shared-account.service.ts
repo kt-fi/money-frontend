@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { SharedAccount } from './shared-account';
 import { Transaction } from './transaction';
 import { environment } from '../environments/environment';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -36,8 +37,8 @@ export class SharedAccountService {
     })
   }
 
-  getAccountUsers(accountId:string):Observable<string[]>{
-    return this.http.get<string[]>(`${this.url}/sharedAccount/getAccountUsers/${accountId}`)
+  getAccountUsers(accountId:string):Observable<User[]>{
+    return this.http.get<User[]>(`${this.url}/sharedAccount/getAccountUsers/${accountId}`)
   }
 
 }

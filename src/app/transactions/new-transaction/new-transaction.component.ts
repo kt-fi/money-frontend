@@ -2,6 +2,7 @@ import { animate, animation, state, style, transition, trigger } from '@angular/
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ModalService } from 'src/app/modal.service';
 import { SharedAccountService } from 'src/app/shared-account.service';
 import { Transaction } from 'src/app/transaction';
@@ -13,21 +14,54 @@ import { TransactionsService } from '../transactions.service';
   templateUrl: './new-transaction.component.html',
   styleUrls: ['./new-transaction.component.scss'],
   animations: [
-   
+    trigger('openClose', [
+      // ...
+      state('open', style({
+        top: '50vh'
+      })),
+      state('closed', style({
+        top: '150vh'
+      })),
+      transition('open => closed', [
+        animate('0.5s')
+      ]),
+      transition('closed => open', [
+        animate('0.5s')
+      ]),
+    ]),
+    trigger('openCloseBg', [
+      // ...
+      state('open', style({
+        display: 'visible'
+      })),
+      state('closed', style({
+        display: 'none'
+      })),
+      transition('open => closed', [
+        animate('0s 0.5s')
+      ]),
+      transition('closed => open', [
+        animate('0s 0s')
+      ]),
+    ]),
   ]
 })
 export class NewTransactionComponent implements OnInit {
 
+  //SUBSCRIPTION
+
+  subscription1$?: Subscription;
+
   @Input()
-  isOpen?: boolean;;
+  isOpen?: boolean = false;;
   
   loading:boolean = false;
 
   //HIDE TIPO PAGO
   hideInput: boolean = true;
 
-  userId: string = '';
-  accountId:string ='';
+  userId?: string;
+  accountId?:string;
 
   constructor(private transactionsService: TransactionsService, private sharedAccountService: SharedAccountService, private currentRoute: ActivatedRoute, private elementRef: ElementRef, private modalService: ModalService) { }
 
@@ -37,6 +71,9 @@ export class NewTransactionComponent implements OnInit {
   data?:any;
   
   ngOnInit(): void {
+
+    // this.userId = this.currentRoute.snapshot.params['userId']
+    // this.accountId = this.currentRoute.snapshot.params['accountId']
 
     this.userId = this.currentRoute.snapshot.params['userId']
     this.accountId = this.currentRoute.snapshot.params['accountId']
@@ -60,19 +97,18 @@ export class NewTransactionComponent implements OnInit {
       concept: form.value.concept
     }
 
-    this.transactionsService.createNewTransaction(transaction).subscribe(transaction => {
-      console.log(form)
-      
+    this.subscription1$ = this.transactionsService.createNewTransaction(transaction).subscribe((transaction: Transaction) => {      
       this.getUserBalance(transaction)
       form.reset();
      this.closeModal();
     })
   }
 
-  getUserBalance(transaction: any){    
+  getUserBalance(transaction: Transaction){    
     setTimeout(()=>{
     this.sharedAccountService.getUserBalance(transaction.userId, transaction.accountId);
     this.sharedAccountService.getUserTransactions(transaction.userId, transaction.accountId);
+    this.loading = false;
     },1500)
   }
 
@@ -82,5 +118,9 @@ export class NewTransactionComponent implements OnInit {
     this.elementRef.nativeElement.dispatchEvent(event)
   }
 
+
+  ngOnDestroy() {
+    this.subscription1$?.unsubscribe();
+  }
 
 }

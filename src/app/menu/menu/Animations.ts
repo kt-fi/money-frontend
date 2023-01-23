@@ -23,10 +23,10 @@ export const Animations = {
           transform: 'translateX(0rem)'
         })),
         state('closed', style({
-          transform: 'translateX(4rem)'
+          transform: 'translateX(16rem)'
         })),
         transition('open => closed', [
-          animate('0.5s 0.5s')
+          animate('0.1s 0s')
         ]),
         transition('closed => open', [
           animate('0.1s 0.1s')
@@ -39,10 +39,10 @@ export const Animations = {
           transform: 'translateX(0rem)'
         })),
         state('closed', style({
-          transform: 'translateX(8rem)'
+          transform: 'translateX(20rem)'
         })),
         transition('open => closed', [
-          animate('0.5s 0.5s')
+          animate('0.1s 0.1s')
         ]),
         transition('closed => open', [
           animate('0.1s 0.2s')
@@ -55,10 +55,10 @@ export const Animations = {
           transform: 'translateX(0rem)'
         })),
         state('closed', style({
-          transform: 'translateX(12rem)'
+          transform: 'translateX(24rem)'
         })),
         transition('open => closed', [
-          animate('0.5s 0.5s')
+          animate('0.1s 0.2s')
         ]),
         transition('closed => open', [
           animate('0.1s 0.3s')
@@ -71,10 +71,10 @@ export const Animations = {
           transform: 'translateX(0rem)'
         })),
         state('closed', style({
-          transform: 'translateX(16rem)'
+          transform: 'translateX(28rem)'
         })),
         transition('open => closed', [
-          animate('0.5s 0.5s')
+          animate('0.1s 0.3s')
         ]),
         transition('closed => open', [
           animate('0.1s 0.4s')
