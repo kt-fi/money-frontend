@@ -82,6 +82,7 @@ export class SignInComponent implements OnInit {
           this.errorMsg = data;
           this.loading = false;
         }else{
+          this.setLocalStorage(data)
           this.goToAccount(data)
         }
 },
@@ -101,12 +102,19 @@ export class SignInComponent implements OnInit {
   goToAccount(user: User){
     this.user = user;
     let accountId = user.userAccounts[0].accountId
-    this.route.navigate([`sharedAccount/${user.userId}/${accountId}`])
+    // this.route.navigate([`sharedAccount/${user.userId}/${accountId}`])
+        this.route.navigate([`newSharedAccount/${user.userId}`])
   }
 
   ngOnDestroy(){
     this.subscription1$?.unsubscribe();
     this.subscription2$?.unsubscribe();
+  }
+
+
+  setLocalStorage(userData: any){
+    localStorage.setItem("moneyAccountUserName", userData.userName);
+    localStorage.setItem("moneyAccountUserId", userData.userId)
   }
 
 }

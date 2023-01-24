@@ -7,7 +7,7 @@ import { CreateNewTransactionComponent } from './transactions/create-new-transac
 const routes: Routes = [
 
   { path: 'auth', component: SignInComponent },
-  { path: 'newSharedAccount', component: CreateSharedAccountComponent },
+  { path: 'newSharedAccount/:userId', component: CreateSharedAccountComponent },
   { path: 'sharedAccount/:userId/:accountId', component: CreateNewTransactionComponent },
   { path: '', component: SignInComponent },
   { path: '**', component: SignInComponent },

@@ -13,24 +13,42 @@ export class CreateSharedAccountComponent implements OnInit {
 
   subscription1$?: Subscription;
 
-  userName: string = 'Fake Name'
+  userName?:any;
+  userId?:any;
+
+  accountName?: string;
 
   form: any;
+
+  addUser:string = "Type Email";
+
+  addUsersList: string[] = [];
 
   constructor(private sharedAccountService: SharedAccountService) { }
 
   ngOnInit(): void {
+    this.userName = localStorage.getItem("moneyAccountUserName")
     this.form = new FormGroup({
       accountName: new FormControl('',  [Validators.required, Validators.minLength(5)])
-    })
+    }) 
+    
+    this.userId = localStorage.getItem("moneyAccountUserId");
   }
 
   createAccount(form: FormGroup){
      let accountName = form.value.accountName;
-     let creatorId = '27dac04f5d5';
-      this.subscription1$ = this.sharedAccountService.createNewSharedAccount(accountName, creatorId).subscribe((data:SharedAccount) => {
-        console.log(data)
+    
+      this.subscription1$ = this.sharedAccountService.createNewSharedAccount(accountName, this.userId).subscribe((data:SharedAccount) => {
+        this.accountName = data.accountName
       })
+  }
+
+  addUserToAccount(email: string){
+    this.addUsersList.push(email)
+  }
+
+  sendInvites(){
+
   }
 
   ngOnDestroy(){

@@ -1,5 +1,5 @@
 export class SharedAccount {
-    constructor(private accountId: string, private accountName: string, private accountMembers?: string[], private individualAccounts?: string[]){
+    constructor(public accountId: string, public accountName: string, public accountMembers?: string[], public individualAccounts?: string[]){
         this.accountId = accountId,
         this.accountName = accountName,
         this.accountMembers = accountMembers,
