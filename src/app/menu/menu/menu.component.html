@@ -1,7 +1,7 @@
 <div [ngClass]="{'menu': menuIsOpen}">
 <ul class="menu__container" [@openClose]="menuIsOpen ? 'open' : 'closed'">
     <li class="menu__item" (click)="toggleMenu()">close</li>    
-    <li class="menu__item menu__item-4" [@openClose1]="menuHasOpened ? 'open' : 'closed'" (click)="toggleMenu()" [routerLink]="['../../../home']">Home</li>
+    <li class="menu__item menu__item-4" [@openClose1]="menuHasOpened ? 'open' : 'closed'" (click)="toggleMenu()" [routerLink]="['../../../home']">Mis Cuentas</li>
     <li class="menu__item menu__item-1" [@openClose2]="menuHasOpened ? 'open' : 'closed'" (click)="toggleMenu()" [routerLink]="['../../../newSharedAccount', userId]">New Account</li>
     <li class="menu__item menu__item-2" [@openClose3]="menuHasOpened ? 'open' : 'closed'" (click)="toggleMenu()">Monthly Review</li>
     <li class="menu__item menu__item-3" [@openClose4]="menuHasOpened ? 'open' : 'closed'" (click)="toggleMenu()" [routerLink]="['../../../notifications', userId]">Notifications</li>

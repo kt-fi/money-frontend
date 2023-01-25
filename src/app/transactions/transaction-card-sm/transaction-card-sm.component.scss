@@ -3,10 +3,12 @@
     padding: 1rem 1rem;
     border-radius: 1px;
     border: 0;
-    box-shadow: 0 0 5px rgb(184, 184, 184);
+  
     font-family: var(--font-main);
     margin: 0.5rem 0;
     z-index: 10;
+    background-color: var(--color-box-black);
+    color: white;
     
     &__header{
         height: 50px;
@@ -14,12 +16,12 @@
 
     &__concept {
         font-size: 2.5rem;
-        font-weight: 500;
+        font-weight: 400;
     }
 
     &__quantity {
-        font-size: 3rem;
-        font-weight: 600;
+        font-size: 2.5rem;
+        font-weight: 500;
         text-align: right;
     }
 
@@ -35,7 +37,7 @@
     &--delete {
         width: 100%;
         font-weight: 600;
-        color: red;
+        color: #CF0A0A;
         text-align: right;
     }
 

@@ -1,9 +1,9 @@
 .signup {
     position: relative;
-    background-color: var(--color-background-blue);
+    background-color: var(--color-background-black);
     height: 100vh;
     color: white;
-
+    z-index: 1000000;
     &__header {
         position: absolute;
         top: 40%;
