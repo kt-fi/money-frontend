@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Animations } from './Animations';
 
 @Component({
@@ -17,9 +18,13 @@ export class MenuComponent implements OnInit {
   menuHasOpened:boolean = false;
   disableMenuButton:boolean = true;
 
-  constructor() { }
+  userId?: any;
+  accountId: any = null;
+
+  constructor(private router: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.userId = localStorage.getItem("moneyAccountUserId")
   }
 
   toggleMenu(){ 

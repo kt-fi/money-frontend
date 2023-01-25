@@ -17,6 +17,8 @@ import { AccountReviewComponent } from './transactions/account-review/account-re
 import { LoaderComponent } from './loader/loader.component';
 import { MenuComponent } from './menu/menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -34,6 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AccountReviewComponent,
     LoaderComponent,
     MenuComponent,
+    NotificationsComponent,
+    HomeComponent,
 
 
   ],

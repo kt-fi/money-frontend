@@ -27,6 +27,7 @@ export class SignInComponent implements OnInit {
   submitted: boolean = false;
 
   user?: User;
+  accountId?: string;
 
   constructor(public authService: AuthService, private route: Router) { }
 
@@ -101,9 +102,18 @@ export class SignInComponent implements OnInit {
 
   goToAccount(user: User){
     this.user = user;
-    let accountId = user.userAccounts[0].accountId
-    // this.route.navigate([`sharedAccount/${user.userId}/${accountId}`])
-        this.route.navigate([`newSharedAccount/${user.userId}`])
+
+   
+
+     if(user.userAccounts.length != 0){    
+      this.accountId = user.userAccounts[0].accountId
+       this.route.navigate([`sharedAccount/${user.userId}/${this.accountId}`])
+     }else{
+       this.route.navigate([`newSharedAccount/${user.userId}`])
+     }
+   
+       
+       // this.route.navigate([`notifications/${user.userId}`])
   }
 
   ngOnDestroy(){

@@ -1,0 +1,24 @@
+.home {
+    width:100vw;
+    min-height: 100vh;
+    max-height: min-content;
+    background-color: var(--color-background-blue);
+
+    &__accounts {
+        width: 95vw;
+        margin: 0 auto;
+
+        &--account {
+            width: 95%;
+            margin: 0.5rem 0 0 0;
+            padding: 2rem;
+            list-style: none;
+            background-color: white;
+            border: 1px solid black;
+            border-radius: 2px;
+            font-size: 2rem;
+            font-family: var(--font-main);
+            font-weight: 500;
+        }
+    }
+}

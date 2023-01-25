@@ -17,6 +17,7 @@ export class CreateSharedAccountComponent implements OnInit {
   userId?:any;
 
   accountName?: string;
+  accountId?: string;
 
   form: any;
 
@@ -39,7 +40,8 @@ export class CreateSharedAccountComponent implements OnInit {
      let accountName = form.value.accountName;
     
       this.subscription1$ = this.sharedAccountService.createNewSharedAccount(accountName, this.userId).subscribe((data:SharedAccount) => {
-        this.accountName = data.accountName
+        this.accountName = data.accountName;
+        this.accountId = data.accountId;
       })
   }
 
@@ -48,7 +50,9 @@ export class CreateSharedAccountComponent implements OnInit {
   }
 
   sendInvites(){
-
+    this.sharedAccountService.inviteUsersToAccount(this.accountId!, this.addUsersList).subscribe(data => {
+      console.log(data)
+    })
   }
 
   ngOnDestroy(){

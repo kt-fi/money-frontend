@@ -24,6 +24,14 @@ export class SharedAccountService {
     return this.http.post<SharedAccount>(`${this.url}/sharedAccount/newHouseAccount`, {accountName, creatorId})
   }
 
+  inviteUsersToAccount(accountId: string, users: string[]){
+    return this.http.post(`${this.url}/sharedAccount/inviteUsers`, {accountId, users})
+  }
+
+  joinSharedAccount( accountId: string, userId: string){
+    return this.http.post(`${this.url}/sharedAccount/addUserToAccount`, {accountId, userId})
+  }
+
   getUserBalance(userId: string, accountId: string){
     this.loader$.next(true)
     return this.http.get(`${this.url}/sharedAccount/getUserBalance/${userId}/${accountId}`).subscribe((data:any) =>{
@@ -39,6 +47,13 @@ export class SharedAccountService {
 
   getAccountUsers(accountId:string):Observable<User[]>{
     return this.http.get<User[]>(`${this.url}/sharedAccount/getAccountUsers/${accountId}`)
+  }
+
+
+  // CHANGE TO A USER SERVICE
+
+  getAllUserAccounts(userId:string):Observable<SharedAccount[]>{
+    return this.http.get<SharedAccount[]>(`${this.url}/sharedAccount/getAllUserAccounts/${userId}`)
   }
 
 }

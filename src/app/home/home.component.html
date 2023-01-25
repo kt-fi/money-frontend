@@ -1,0 +1,9 @@
+<div class="home">
+    <div class="row">
+        <div class="col-12">
+            <ul class="hoem__accounts">
+                <li class="home__accounts--account" *ngFor="let account of userAccounts" (click)="onSelectAccount(account.accountId)">{{account.accountName}}</li>
+            </ul>
+        </div>
+    </div>
+</div>

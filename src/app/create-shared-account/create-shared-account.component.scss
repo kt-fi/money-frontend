@@ -38,6 +38,31 @@
         flex-direction: row;
         justify-content: center;
     }
+
+    &__user {
+
+        position: relative;
+
+        &--input {
+            width: 90%;
+        }
+
+        &--plus {
+            position: absolute;
+            right: 1rem;
+            top: 45%;
+            color:white;
+            border: none;
+            width: max-content;
+            height: 3rem;
+            padding: 0.5rem 2rem;
+            background-color: rgb(45, 107, 45);
+            font-weight: 500;
+            border-radius: 2px;;
+        }
+    }
+
+    
 }
 
 

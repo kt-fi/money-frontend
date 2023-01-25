@@ -14,17 +14,23 @@
                     <div class="newAccount__buttons">
                         <button class="btn btn-primary" type="submit" [disabled]="accountName">Create Account</button>
                     </div>
-                    
                 </form>
 
                 <p *ngIf="accountName">Invite people to {{accountName}} Account</p>
-                    <label for="accountName">Add User</label>
-                    <input type="email" class="form-control"  [(ngModel)]="addUser"> <p (click)="addUserToAccount(addUser)">+</p>
+                    <div class="newAccount__user">
+                        <label for="accountName">Add User</label>
+                        <input type="email" class="form-control new__account__user--input"  [(ngModel)]="addUser"> 
+                        <button class="newAccount__user--plus" (click)="addUserToAccount(addUser)">Add User</button>
+                    </div>
+                    
                    
                     <ul>
                         <li *ngFor="let user of addUsersList"><p>{{user}}</p></li>
                     </ul>
-                    <button class="btn btn-primary" (click)="sendInvites()" [disabled]="!accountName">Send Invites</button>
+                    <div class="newAccount__buttons">
+                        <button class="btn btn-primary newAccount__sendInvites" (click)="sendInvites()" [disabled]="!accountName">Send Invites</button>
+                    </div>
+                    
             </div>
                 
         </div>
