@@ -1,8 +1,8 @@
-<div class="container-fluid">
+<div class="container-fluid notification">
     <div class="row">
         <div class="col-12">
             <ul class="col-12">
-                <li *ngFor="let notification of notifications">Yo have been invited to the {{notification.accountName}} <button (click)="acceptInvite(notification.accountId)">Join Account</button></li>
+                <app-notification-card *ngFor="let notification of notifications" [notification]="notification"></app-notification-card>
             </ul>
         </div>
     </div>

@@ -5,9 +5,17 @@
     position: relative;
 
     &__header {
+        font-family: var(--font-main);
+        font-size: 2.5rem;
+        font-weight: 500;;
         width: 100vw;
         text-align: center;
         margin: 5rem 0;
+    }
+
+    &__userName {
+        color: wheat;
+        font-size: 2rem;
     }
 
     &__userData {
@@ -29,6 +37,23 @@
         padding: 2rem;
         border-radius: 5px;
         border: 1px solid gray;
+
+        &-2{
+            position: absolute;
+            top: 50%;
+            left: -100%;
+            transform: translate(-50%, -50%);
+            height: 50vh;
+            width: 90vw;
+            max-width: 500px;
+            font-size: 1.5rem;
+            background-color: white;
+            height: min-content;
+            padding: 2rem;
+            border-radius: 5px;
+            border: 1px solid gray;
+            
+        }
     }
 
     &__buttons {
@@ -46,7 +71,8 @@
         &--input {
             width: 90%;
         }
-
+        
+       
         &--plus {
             position: absolute;
             right: 1rem;
@@ -62,6 +88,20 @@
         }
     }
 
+ &__users {
+            margin-top: 1rem;
+
+            &--user {
+                padding: 0.5rem;
+                border-radius: 2px;
+                background-color: rgb(207, 207, 207);
+            }
+        }
+
+    &__invite--head {
+        color: white;
+        font-size: 2rem;
+    }
     
 }
 

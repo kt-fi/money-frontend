@@ -1,34 +1,33 @@
 <div class="container-fluid newAccount">
     <div class="row">
         <div class="col-12"> 
-            <h1 class="newAccount__header">Create A new Account</h1>
+            <h1 class="newAccount__header">Create A New Shared Account</h1>
             <div class="newAccount__userData">
-                <p class="">
-                    {{userName}}
+                <p class="newAccount__userName">
+                    Creator: {{userName}}
                 </p>
+                <p *ngIf="accountName" class="newAccount__invite--head">Invite people to {{accountName}} Account</p>
             </div>
-            <div class="newAccount__form">
+            <div class="newAccount__form" [@slideOne]="accountCreated ? 'two' : 'one'">
                 <form action=""  class=""  [formGroup]="form" (ngSubmit)="createAccount(form)">
                     <label for="accountName">Account Name</label>
                     <input type="text" id="accountName" class="form-control" formControlName="accountName">
                     <div class="newAccount__buttons">
-                        <button class="btn btn-primary" type="submit" [disabled]="accountName">Create Account</button>
+                        <button class="btn btn-primary" type="submit" [disabled]="form.status !== 'VALID'">Create Account</button>
                     </div>
-                </form>
-
-                <p *ngIf="accountName">Invite people to {{accountName}} Account</p>
+                </form>      
+            </div>
+            <div class="newAccount__form-2" [@slideTwo]="accountCreated ? 'two' : 'one'">
                     <div class="newAccount__user">
                         <label for="accountName">Add User</label>
-                        <input type="email" class="form-control new__account__user--input"  [(ngModel)]="addUser"> 
+                        <input type="email" class="form-control new__account__user--input"  [(ngModel)]="addUser" placeholder="User Email"> 
                         <button class="newAccount__user--plus" (click)="addUserToAccount(addUser)">Add User</button>
                     </div>
-                    
-                   
                     <ul>
-                        <li *ngFor="let user of addUsersList"><p>{{user}}</p></li>
+                        <li *ngFor="let user of addUsersList" class="newAccount__users"><p class="newAccount__users--user">{{user}}</p></li>
                     </ul>
                     <div class="newAccount__buttons">
-                        <button class="btn btn-primary newAccount__sendInvites" (click)="sendInvites()" [disabled]="!accountName">Send Invites</button>
+                        <button class="btn btn-primary newAccount__sendInvites" (click)="sendInvites()" [disabled]="addUsersList.length < 1">Send Invites</button>
                     </div>
                     
             </div>

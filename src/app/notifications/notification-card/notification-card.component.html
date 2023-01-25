@@ -1,0 +1,12 @@
+<li class="container-fluid notificationCard" *ngIf="notification">
+    <div class="row ">
+        <div class="col-12 ">
+            <div class="row ">
+                <p class="col-10 notificationCard__text">
+                    Yo have been invited to the {{notification.accountName}}
+                </p>  
+                <p class="col-2 notificationCard__accept--button" (click)="acceptInvite(notification.accountId)">Join</p>
+            </div>
+        </div>
+</div>
+</li>

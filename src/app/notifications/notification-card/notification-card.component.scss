@@ -1,0 +1,19 @@
+.notificationCard {
+    margin: 1rem 0rem;
+    background-color: var(--color-box-black);
+    padding: 2rem;
+    border-radius: 2px;;
+    color: white;
+    font-family: var(--font-main);
+    font-size: 2rem;
+
+    &__accept {
+    
+        &--button{
+            font-weight: 800;
+            justify-self: center;
+            align-self: center;
+        }
+}
+
+}

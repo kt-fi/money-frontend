@@ -64,7 +64,8 @@ export class SignInComponent implements OnInit {
             this.errorMsg = data;
             this.loading = false;
           }else{
-            console.log(data)
+            this.setLocalStorage(data)
+            this.goToAccount(data)
           }
   },
         (err: HttpErrorResponse)=>{

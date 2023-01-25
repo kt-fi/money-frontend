@@ -19,6 +19,7 @@ import { MenuComponent } from './menu/menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { HomeComponent } from './home/home.component';
+import { NotificationCardComponent } from './notifications/notification-card/notification-card.component';
 
 
 
@@ -38,6 +39,7 @@ import { HomeComponent } from './home/home.component';
     MenuComponent,
     NotificationsComponent,
     HomeComponent,
+    NotificationCardComponent,
 
 
   ],

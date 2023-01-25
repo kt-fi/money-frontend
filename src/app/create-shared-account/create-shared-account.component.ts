@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -7,11 +8,43 @@ import { SharedAccountService } from '../shared-account.service';
 @Component({
   selector: 'app-create-shared-account',
   templateUrl: './create-shared-account.component.html',
-  styleUrls: ['./create-shared-account.component.scss']
+  styleUrls: ['./create-shared-account.component.scss'],
+  animations: [
+    trigger('slideOne', [
+      state('one', style({
+        left: '50%'
+      })),
+      state('two', style({
+        left: '-50%'
+      })),
+      transition('one => two', [
+        animate('0.3s')
+      ]),
+      transition('two => one', [
+        animate('0.3s')
+      ])
+    ]),
+    trigger('slideTwo', [
+      state('one', style({
+        left: '150%'
+      })),
+      state('two', style({
+        left: '50%'
+      })),
+      transition('one => two', [
+        animate('0.3s')
+      ]),
+      transition('two => one', [
+        animate('0.3s')
+      ])
+    ])
+  ]
 })
 export class CreateSharedAccountComponent implements OnInit {
 
   subscription1$?: Subscription;
+
+  accountCreated: boolean = false;
 
   userName?:any;
   userId?:any;
@@ -21,7 +54,7 @@ export class CreateSharedAccountComponent implements OnInit {
 
   form: any;
 
-  addUser:string = "Type Email";
+  addUser:string = "User Email";
 
   addUsersList: string[] = [];
 
@@ -43,6 +76,7 @@ export class CreateSharedAccountComponent implements OnInit {
         this.accountName = data.accountName;
         this.accountId = data.accountId;
       })
+      this.accountCreated = true;
   }
 
   addUserToAccount(email: string){
