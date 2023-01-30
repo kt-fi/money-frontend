@@ -15,8 +15,6 @@ export class NotificationsComponent implements OnInit {
 
   constructor(private notificationService: NotificationsService, private sharedAccountService: SharedAccountService) { }
 
-  
-
   ngOnInit(): void {
     this.userId = localStorage.getItem("moneyAccountUserId")
     this.notificationService.getNotifications(this.userId).subscribe((data:any)=>{
@@ -24,8 +22,6 @@ export class NotificationsComponent implements OnInit {
       console.log(data)
     })
   }
-
-
 
   acceptInvite(accountId:string) {
     this.sharedAccountService.joinSharedAccount(accountId, this.userId).subscribe((data)=>{

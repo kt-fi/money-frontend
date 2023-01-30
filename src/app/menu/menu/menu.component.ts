@@ -1,6 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Animations } from './Animations';
 
 @Component({
@@ -21,7 +21,7 @@ export class MenuComponent implements OnInit {
   userId?: any;
   accountId: any = null;
 
-  constructor(private router: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.userId = localStorage.getItem("moneyAccountUserId")
@@ -33,5 +33,13 @@ export class MenuComponent implements OnInit {
     setTimeout(()=>{
       this.menuHasOpened = ! this.menuHasOpened
     }),500
+  }
+
+  logOut(){
+    this.toggleMenu();
+    localStorage.clear();
+   
+    
+    this.router.navigate(['auth'])
   }
 }

@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { SharedAccountService } from 'src/app/shared-account.service';
 
@@ -13,17 +14,19 @@ export class NotificationCardComponent implements OnInit {
   @Input()
   notification?:any;
 
+  message?: string;
+
   constructor(private sharedAccountService: SharedAccountService) { }
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('moneyAccountUserId')
   }
-
-
   
   acceptInvite(accountId:string) {
     this.sharedAccountService.joinSharedAccount(accountId, this.userId).subscribe((data)=>{
-      console.log(data)
+      this.message = 'Invitatcion Accepted';
+    },(err:HttpErrorResponse)=>{
+      this.message = 'Error: Please try again later'
     })
   }
 

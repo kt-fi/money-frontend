@@ -29,9 +29,22 @@ export class SignInComponent implements OnInit {
   user?: User;
   accountId?: string;
 
+  loggedIn?:boolean = false;
+
   constructor(public authService: AuthService, private route: Router) { }
 
   ngOnInit(): void {
+
+    let userId;
+    if(localStorage.getItem("moneyAccountUserId")){
+      userId = localStorage.getItem("moneyAccountUserId")
+      this.loggedIn = true;
+    }
+
+    if(this.loggedIn){
+      this.route.navigate([`home`])
+    }
+
     this.form = new FormGroup({
       userName: new FormControl('User',[ Validators.required, Validators.minLength(3)]),
       email: new FormControl('',[ Validators.required, Validators.email]),
@@ -40,13 +53,17 @@ export class SignInComponent implements OnInit {
     })
   }
 
+  setLocalStorage(userData: any){
+    localStorage.setItem("moneyAccountUserName", userData.userName);
+    localStorage.setItem("moneyAccountUserId", userData.userId)
+  }
+
   submitForm(form: FormGroup){
     this.error = false;
     let userName = form.value.userName;
     let userEmail =  form.value.email;
     let password = form.value.password;
     let user;
-    
     this.submitted= true;
 
     if(this.signup){
@@ -58,15 +75,7 @@ export class SignInComponent implements OnInit {
       }else{
         user = new User( undefined, userName, userEmail, password, [] );
         this.subscription1$ = this.authService.signUp(user).subscribe((data:User)=>{
-          let result = typeof(data)
-          if(result == 'string'){
-            this.error = true;
-            this.errorMsg = data;
-            this.loading = false;
-          }else{
-            this.setLocalStorage(data)
-            this.goToAccount(data)
-          }
+       this.checkSigninResult(data)
   },
         (err: HttpErrorResponse)=>{
           this.error = true;
@@ -78,15 +87,7 @@ export class SignInComponent implements OnInit {
       this.loading = true;
       user = new User( undefined, userName,userEmail, password, [] );
       this.subscription2$ = this.authService.signIn(user).subscribe((data:User)=>{
-        let result = typeof(data)
-        if(result == 'string'){
-          this.error = true;
-          this.errorMsg = data;
-          this.loading = false;
-        }else{
-          this.setLocalStorage(data)
-          this.goToAccount(data)
-        }
+       this.checkSigninResult(data)
 },
       (err: HttpErrorResponse)=>{
         this.error = true;
@@ -101,31 +102,32 @@ export class SignInComponent implements OnInit {
   }
 
 
+  checkSigninResult(data: User){
+    let result = typeof(data)
+    if(result == 'string'){
+      this.error = true;
+      this.errorMsg = data;
+      this.loading = false;
+    }else{
+      this.setLocalStorage(data)
+      this.goToAccount(data)
+    }
+  }
+
+
   goToAccount(user: User){
     this.user = user;
-
-   
-
      if(user.userAccounts.length != 0){    
       this.accountId = user.userAccounts[0].accountId
        this.route.navigate([`sharedAccount/${user.userId}/${this.accountId}`])
      }else{
        this.route.navigate([`newSharedAccount/${user.userId}`])
      }
-   
-       
-       // this.route.navigate([`notifications/${user.userId}`])
   }
 
   ngOnDestroy(){
     this.subscription1$?.unsubscribe();
     this.subscription2$?.unsubscribe();
-  }
-
-
-  setLocalStorage(userData: any){
-    localStorage.setItem("moneyAccountUserName", userData.userName);
-    localStorage.setItem("moneyAccountUserId", userData.userId)
   }
 
 }

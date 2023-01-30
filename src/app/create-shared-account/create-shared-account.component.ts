@@ -1,4 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -58,6 +59,8 @@ export class CreateSharedAccountComponent implements OnInit {
 
   addUsersList: string[] = [];
 
+  error?: string;
+
   constructor(private sharedAccountService: SharedAccountService) { }
 
   ngOnInit(): void {
@@ -75,6 +78,8 @@ export class CreateSharedAccountComponent implements OnInit {
       this.subscription1$ = this.sharedAccountService.createNewSharedAccount(accountName, this.userId).subscribe((data:SharedAccount) => {
         this.accountName = data.accountName;
         this.accountId = data.accountId;
+      },(err:HttpErrorResponse) =>{
+        this.error = "Error: Unable to create account"
       })
       this.accountCreated = true;
   }
@@ -85,7 +90,9 @@ export class CreateSharedAccountComponent implements OnInit {
 
   sendInvites(){
     this.sharedAccountService.inviteUsersToAccount(this.accountId!, this.addUsersList).subscribe(data => {
-      console.log(data)
+      this.error = `Invitations Have Been Sent`
+    },(err: HttpErrorResponse) => {
+      this.error = "Failed to send Invitations"
     })
   }
 

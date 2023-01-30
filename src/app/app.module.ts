@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { HomeComponent } from './home/home.component';
 import { NotificationCardComponent } from './notifications/notification-card/notification-card.component';
+import { FooterMenuComponent } from './footer-menu/footer-menu.component';
 
 
 
@@ -40,6 +41,7 @@ import { NotificationCardComponent } from './notifications/notification-card/not
     NotificationsComponent,
     HomeComponent,
     NotificationCardComponent,
+    FooterMenuComponent,
 
 
   ],
