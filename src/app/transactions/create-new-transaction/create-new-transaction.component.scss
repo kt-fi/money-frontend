@@ -58,6 +58,13 @@
         }
     }
 
+    &__list {
+        padding-bottom: 3rem;
+        height: 60vh;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+
     &__input {
         width: 300px;
         max-width: 100%;
@@ -120,23 +127,25 @@ ul {
     //MENU BUTTONS
 .addtransaction__button {
     position: fixed;
-    bottom: 2rem;
+    bottom: 3rem;
     right: 2rem;
     height: 50px;
     width: 50px;
-    background-color: #68B984;
+    background-color: black;
+    border: 1px solid white;
     box-shadow: 2px 2px 2px  black;
     border-radius: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    z-index: 999;
+    z-index: 1002;
 
     &--plus {
         color: white;
         font-size: 5rem;
-        font-weight: 800;
+        font-weight: 500;
+        transform: translateY(0.5rem);
     }
 
 }
