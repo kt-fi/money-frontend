@@ -12,11 +12,19 @@
          <!-- <app-new-transaction></app-new-transaction> -->
         </div>
         <div class="col-12">
-            <ul class=" newTransaction__usersList" *ngIf="accountUsers">
+            <div class="">
+                <div class="users__container">
+<p class="newTransaction__usersList--header" (click)="toggleUserMenu()">Other Users <span class="arrow"></span></p>
+            <ul [@openClose]="userMenuOpen ? 'open' : 'closed'"  [@openCloseText]="userMenuOpen ? 'open' : 'closed'" class=" newTransaction__usersList" *ngIf="accountUsers">
+                
                 <li *ngFor="let user of accountUsers" >
-                   <p class=" newTransaction__usersList--item"  (click)="onChangeAccount(user.userId)"> {{user.userName}}</p>
+                   <p class=" newTransaction__usersList--item" [@openCloseText]="userMenuOpen ? 'open' : 'closed'" (click)="onChangeAccount(user.userId)"> {{user.userName}}</p>
                 </li>
             </ul>
+                </div>
+            </div>
+            
+
         <ul class="newTransaction__list" *ngIf="transactions">
             <li class="newTransaction__list--item"  *ngFor="let transaction of transactions">
                 <app-transaction-card-sm [userId]="userId" [transaction]="transaction" (event)="getUserBalance($event)"></app-transaction-card-sm>

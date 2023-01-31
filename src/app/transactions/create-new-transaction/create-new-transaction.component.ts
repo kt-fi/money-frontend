@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ElementRef, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -11,9 +12,45 @@ import { TransactionsService } from '../transactions.service';
 @Component({
   selector: 'app-create-new-transaction',
   templateUrl: './create-new-transaction.component.html',
-  styleUrls: ['./create-new-transaction.component.scss']
+  styleUrls: ['./create-new-transaction.component.scss'],
+  animations: [
+    trigger('openClose', [
+      // ...
+      state('open', style({
+        height: '*',
+      })),
+      state('closed', style({
+        height: '0rem',
+
+      })),
+      transition('open => closed', [
+        animate('0.1s ease-in')
+      ]),
+      transition('closed => open', [
+        animate('0.1s ease-out')
+      ]),
+    ]),
+    trigger('openCloseText', [
+      // ...
+      state('open', style({
+        zIndex: '100000',
+      })),
+      state('closed', style({
+        zIndex: '-5',
+
+      })),
+      transition('open => closed', [
+        animate('0s')
+      ]),
+      transition('closed => open', [
+        animate('0s 0.4s')
+      ]),
+    ]),
+  ]
 })
 export class CreateNewTransactionComponent implements OnInit {
+
+  userMenuOpen: boolean = false;
 
   //Subscriptions
   subscription1$?: Subscription;
@@ -57,6 +94,7 @@ export class CreateNewTransactionComponent implements OnInit {
 
 onChangeAccount(userId: any){
   this.sharedAccountService.getUserTransactions(userId, this.accountId)
+  this.toggleUserMenu()
 }
 
 
@@ -67,6 +105,10 @@ addTransaction(userId:string, accountId:string){
   this.elementRef.nativeElement.dispatchEvent(event)
 }
 
+
+toggleUserMenu(){
+  this.userMenuOpen = !this.userMenuOpen;
+}
 
 ngOnDestroy() {
   this.subscription1$?.unsubscribe();

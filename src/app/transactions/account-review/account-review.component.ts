@@ -15,6 +15,9 @@ export class AccountReviewComponent implements OnInit {
   subscription1$?: Subscription;
 
 
+  loading: boolean = false;
+  error?:string;
+
   @Input()
   event:any;
 
@@ -35,7 +38,7 @@ export class AccountReviewComponent implements OnInit {
   
   ngOnInit(): void {
 
-    
+    this.loading = true;
     this.userId = this.currentRoute.snapshot.params['userId']
     this.accountId = this.currentRoute.snapshot.params['accountId']
 
@@ -44,6 +47,11 @@ export class AccountReviewComponent implements OnInit {
       this.balance = data.userBalance;
       this.totalSpent = data.userTotalSpent;
       this.totalAccountBalance = data.totalAccountBalance;
+      this.loading = false;
+    },(err)=>{
+      this.error = "An error Has Occured getting data"
+    },()=>{
+      console.log('done')
     })
   }
 

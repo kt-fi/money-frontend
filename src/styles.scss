@@ -144,6 +144,13 @@ label {
   }
   
 
+  .loader-container-nobg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
   .errorMsg {
     color: red;
 }
